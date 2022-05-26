@@ -8,9 +8,12 @@
 
   <body>
     <h1>数当てゲーム</h1>
-    <p>第5回課題でテキストボックスとボタンを設置します．</p>
-    <p>１～１０の間の整数を入力してください。</p>
-    <p id="answer">予想: 4</p>
-    <p id="result">第4回課題で結果を表示します</p>
+    <p>
+      <label for="predict"></label>
+      <input type="number"name="predict"id="predict"size="10">
+      <button id="print">回答</button>
+    </p>
+    <p id="answer"><span id="time"></span><span id="predict"></span></p>
+    <p id="result"></p>
   </body>
 </html>
