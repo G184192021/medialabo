@@ -93,12 +93,14 @@ function showResult(answer){
   s.insertAdjacentElement('beforeend',p);
 }
 function showError(err){
+  //２度目
   s=document.querySelector('p#search');
   p=document.createElement('p');
   p.textContent='err';
   s.insertAdjacentElement('beforeend',p);
 }
 function finish(){
+  //３度目
   s=document.querySelector('p#search');
   p=document.createElement('p');
   p.textContent='Ajax 通信が終わりました';
