@@ -8,6 +8,13 @@ let kaisu = 0;
 // 予想を4回実行する
 // 将来: ボタンを押したら， hantei() を呼び出すように修正する
 
+/*
+let T=document.querySelector('p');
+let t=document.createElement('div');
+t.textContent='１から１０の間の整数:';
+T.insertAdjacentElement('afterbegin',t);
+*/
+
 //hantei();
 let judgement=document.querySelector('#print');
 judgement.addEventListener('click',hantei)

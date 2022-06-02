@@ -49,3 +49,103 @@ let data = {
 console.log(/*'都市名:'+*/data.name);
 console.log(/*'最高気温'+*/data.main.temp_max);
 console.log(/*'最低気温'+*/data.main.temp_min);
+
+let t=document.querySelector('table');
+let p=document.createElement('p');
+p.textContent='都市名：'+data.name;
+let d=document.createElement('div');
+d.insertAdjacentElement('beforeend',p);
+t.insertAdjacentElement('afterend',d);
+p=document.createElement('p');
+p.textContent='最高気温：'+data.main.temp_max;
+d.insertAdjacentElement('beforeend',p);
+t.insertAdjacentElement('afterend',d);
+p=document.createElement('p');
+p.textContent='最低気温：'+data.main.temp_min;
+d.insertAdjacentElement('beforeend',p);
+t.insertAdjacentElement('afterend',d);
+
+
+//イベント：#search(検索)
+let b=document.querySelector('#address');
+b.addEventListener('click',search);
+//検索要素を入手
+function search(){
+  let id=document.querySelector('input[name="predict"]');
+  let iv=id.value;
+  let url='https://www.nishita-lab.org/web-contents/jsons/openweather/'+ iv +'.json';
+  axios.get(url).then(showResult).catch(showError).then(finish);
+}
+function showResult(answer){
+  let data=answer.data;
+  let s=document.querySelector('p#search');
+  if(typeof data==='string'){
+    data=JSON.parse(data);
+  }
+  p=document.createElement('p');
+  p.textContent=data.name;
+  s.insertAdjacentElement('beforeend',p);
+  p=document.createElement('p');
+  p.textContent=data.main.temp_max;
+  s.insertAdjacentElement('beforeend',p);
+  p=document.createElement('p');
+  p.textContent=data.main.temp_min;
+  s.insertAdjacentElement('beforeend',p);
+}
+function showError(err){
+  s=document.querySelector('p#search');
+  p=document.createElement('p');
+  p.textContent='err';
+  s.insertAdjacentElement('beforeend',p);
+}
+function finish(){
+  s=document.querySelector('p#search');
+  p=document.createElement('p');
+  p.textContent='Ajax 通信が終わりました';
+  s.insertAdjacentElement('beforeend',p);
+}
+
+/*
+let b = document.querySelector('#sendRequest');
+b.addEventListener('click', sendRequest);
+
+
+// 通信を開始する処理
+function sendRequest() {
+    // URL を設定
+    let url = 'https://www.nishita-lab.org/web-contents/jsons/test.json';
+
+    // 通信開始
+    axios.get(url)
+        .then(showResult)   // 通信成功
+        .catch(showError)   // 通信失敗
+        .then(finish);      // 通信の最後の処理
+}
+
+// 通信が成功した時の処理
+function showResult(resp) {
+    // サーバから送られてきたデータを出力
+    let data = resp.data;
+
+    // data が文字列型なら，オブジェクトに変換する
+    if (typeof data === 'string') {
+        data = JSON.parse(data);
+    }
+
+    // data をコンソールに出力
+    console.log(data);
+
+    // data.x を出力
+    console.log(data.x);
+}
+
+// 通信エラーが発生した時の処理
+function showError(err) {
+    console.log(err);
+}
+
+// 通信の最後にいつも実行する処理
+function finish() {
+    console.log('Ajax 通信が終わりました');
+}
+*/
