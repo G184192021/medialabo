@@ -79,17 +79,41 @@ function search(){
 function showResult(answer){
   let data=answer.data;
   let s=document.querySelector('p#search');
+  let item=['coord.lon','coord.lat','weather.description','main.temp_min','main.temp_max','main.humidity','wind.speed','wind.deg','name'];
   if(typeof data==='string'){
     data=JSON.parse(data);
   }
+  /*for(int in of item){
+    p=document.createElement('p');
+    p.textContent=data.in;
+    s.insertAdjacentElement('beforeend',p);
+  }*/
   p=document.createElement('p');
-  p.textContent=data.name;
+  p.textContent='緯度:'+data.coord.lon;
   s.insertAdjacentElement('beforeend',p);
   p=document.createElement('p');
-  p.textContent=data.main.temp_max;
+  p.textContent='経度:'+data.coord.lat;
   s.insertAdjacentElement('beforeend',p);
   p=document.createElement('p');
-  p.textContent=data.main.temp_min;
+  p.textContent='天気:'+data.weather.description;
+  s.insertAdjacentElement('beforeend',p);
+  p=document.createElement('p');
+  p.textContent='最低気温:'+data.main.temp_min;
+  s.insertAdjacentElement('beforeend',p);
+  p=document.createElement('p');
+  p.textContent='最高気温:'+data.main.temp_max;
+  s.insertAdjacentElement('beforeend',p);
+  p=document.createElement('p');
+  p.textContent='湿度:'+data.main.humidity;
+  s.insertAdjacentElement('beforeend',p);
+  p=document.createElement('p');
+  p.textContent='風速:'+data.wind.speed;
+  s.insertAdjacentElement('beforeend',p);
+  p=document.createElement('p');
+  p.textContent='風向:'+data.wind.deg;
+  s.insertAdjacentElement('beforeend',p);
+  p=document.createElement('p');
+  p.textContent='都市名:'+data.name;
   s.insertAdjacentElement('beforeend',p);
 }
 function showError(err){
